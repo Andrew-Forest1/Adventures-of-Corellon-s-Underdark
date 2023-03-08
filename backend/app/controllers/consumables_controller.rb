@@ -1,0 +1,2 @@
+class ConsumablesController < ApplicationController
+end

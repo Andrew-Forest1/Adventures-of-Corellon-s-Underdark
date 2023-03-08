@@ -1,0 +1,2 @@
+class ConsumableAbilitiesController < ApplicationController
+end
