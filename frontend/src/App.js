@@ -16,6 +16,7 @@ import Dungeon from './components/Dungeon/Dungeon';
 import ModalMenu from "./components/ModalMenu";
 import DnD from './components/DnD'
 import EditDungeon from './components/Dungeon/EditDungeon';
+import CreateDungeon from './components/Dungeon/CreateDungeon';
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -68,6 +69,7 @@ function App() {
                 <Route path="/dungeons" element={<Dungeons/>}/>
                 <Route path="/dungeons/*" element={<Dungeon/>}/>
                 <Route path='/editdungeon/*' element={<EditDungeon/>}/>
+                <Route path='/createdungeon' element={<CreateDungeon/>}/>
                 <Route path='/dnd' element={<DnD/>}/>
               </>
             }

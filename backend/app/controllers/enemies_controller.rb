@@ -1,3 +1,6 @@
+require 'uri'
+require 'open-uri'
+
 class EnemiesController < ApplicationController
     before_action :find_enemy, only: [:show, :destroy, :update, :image_update]
 
@@ -25,9 +28,13 @@ class EnemiesController < ApplicationController
     end
 
     def image_update
-        binding.break
-        @enemy.update!(image: params[:image])
+        file = URI.open(params[:image])
+        filename = File.basename(URI.parse(params[:image]).path)
+        @enemy.image.attach(io: file, filename: filename, content_type: 'image/jpg/png')
         render json: @enemy, status: :accepted
+        rescue URI::InvalidURIError
+            @enemy.update!(image: params[:image])
+            render json: @enemy, status: :accepted
     end
 
 

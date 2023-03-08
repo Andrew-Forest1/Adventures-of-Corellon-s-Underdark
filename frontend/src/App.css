@@ -91,6 +91,12 @@ Body{
     overflow-y: scroll;
 }
 
+.dungeonForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .editCharacter{
     display: flex;
 }

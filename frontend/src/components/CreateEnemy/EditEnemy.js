@@ -89,9 +89,11 @@ function Enemy({}){
     const handleDrop = (e) => {
         e.preventDefault()
         if(e.dataTransfer.getData('URL')){
+            console.log(e.dataTransfer.getData('URL'))
             setState(current => {return {...current, image: e.dataTransfer.getData('URL') }})
+            console.log(state)
             const formData = new FormData();
-            formData.append('image', state.image);
+            formData.append('image', e.dataTransfer.getData('URL'));
             formData.append('id', state.id);
     
             fetch('/enemyimage', {

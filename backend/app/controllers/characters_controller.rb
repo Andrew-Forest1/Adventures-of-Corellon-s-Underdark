@@ -25,6 +25,11 @@ class CharactersController < ApplicationController
     end
 
     def image_update
+        file = URI.open(params[:image])
+        filename = File.basename(URI.parse(params[:image]).path)
+        @character.image.attach(io: file, filename: filename)
+        render json: @character, status: :accepted
+        rescue URI::InvalidURIError
         @character.update!(image: params[:image])
         render json: @character, status: :accepted
     end
