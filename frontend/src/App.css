@@ -1,3 +1,11 @@
+.addEnemies{
+    border: solid;
+    border-radius: 10px;
+    height: 10vh;
+    width: 30vw;
+}
+
+
 .App{
     display: contents;
 }

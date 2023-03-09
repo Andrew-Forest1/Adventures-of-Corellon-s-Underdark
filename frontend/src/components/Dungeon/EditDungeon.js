@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom"
 import { CharacterContext } from "../context/userContext";
 import Enemy from "./DungeonEnemy"
 import Enemies from "../CreateEnemy/Enemies";
+import { DragContext } from "../context/dragContext";
 
 function EditDungeon({}){
     const navigate = useNavigate()
     const [dungeon, setDungeon] = useState(null);
     const { character } = useContext(CharacterContext)
+    const { drag, setDrag } = useContext(DragContext)
 
     useEffect(() => {
         fetch(`/dungeons/${window.location.pathname.split('/')[2]}`)
@@ -28,9 +30,34 @@ function EditDungeon({}){
         navigate(`/dungeons`)
     }
 
+    const handleDrop = (e) => {
+      e.preventDefault()
+      fetch("/dungeon_enemies", {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({dungeon_id: dungeon.id, enemy_id: drag.id})
+      })
+      .then((res) => {
+        if(res.ok){
+          res.json()
+          .then((res) => {
+              setDungeon(current => {return {...current, enemies: [...current.enemies, res]}})
+          })
+        } else {
+          res.json()
+          .then(msg => alert(msg.errors))
+        }
+      })
+
+      setDrag(null)
+    }
+
+
     if(!dungeon) return <span>Loading</span>
 
-    const dungeonEnemies = dungeon ? dungeon.enemies.map(enemy => <Enemy enemy={enemy} progresses={dungeon.progresses}/>) : <></>
+    const dungeonEnemies = dungeon ? dungeon.enemies.map(enemy => <Enemy enemy={enemy} dungeon={dungeon} progresses={dungeon.progresses} editMode={true} setDungeon={setDungeon}/>) : <></>
     const characterProgression = dungeon.progresses.filter(progress => progress.character_id === character.id)
 
     return (
@@ -39,7 +66,7 @@ function EditDungeon({}){
             <h2>{dungeon.name}</h2>
             <h3>Enemies</h3>
             {dungeonEnemies}
-            <h3>Add Enemies</h3>
+            <h3 onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}} className="addEnemies">Add Enemies</h3>
             <button onClick={handleClick}>Back</button>
           </div>
           <Enemies/>

@@ -17,8 +17,8 @@ class DungeonEnemiesController < ApplicationController
     end
 
     def destroy
-        @dungeon_enemy.destroy
-        render json: Enemy.find(params[:enemy_id]), status: :ok
+        @dungeon_enemy[0].destroy
+        render json: Dungeon.find(params[:dungeon_id]), status: :ok
     end
 
     def update
@@ -29,7 +29,7 @@ class DungeonEnemiesController < ApplicationController
     private
 
     def find_dungeon_enemy
-        @dungeon_enemy = DungeonEnemy.find(params[:id])
+        @dungeon_enemy = DungeonEnemy.where('dungeon_id = ? AND enemy_id = ?', params[:dungeon_id], params[:enemy_id])
     end
 
     # def find_dungeon_enemies
