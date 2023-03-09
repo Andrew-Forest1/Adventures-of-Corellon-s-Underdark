@@ -1,6 +1,6 @@
 import Character from "./Character"
 import { useContext, useState, useEffect } from "react"
-import { CharacterContext, EnemyContext, CharacterState } from '../context/userContext'
+import { CharacterContext, EnemyContext, CharacterState, DungeonEnemyContext } from '../context/userContext'
 import BattleLog from "./BattleLog";
 import Enemy from "./Enemy";
 import BattleController from "./Controllers/BattleController";
@@ -23,6 +23,7 @@ function Battle({}) {
     
     const { character, setCharacter } = useContext(CharacterContext)
     const { enemy, setEnemy } = useContext(EnemyContext)
+    const { dungeonEnemy, setDungeonEnemy } = useContext(DungeonEnemyContext)
     const navigate = useNavigate()
     const [actions, setActions] = useState([]);
     const status = {stunned: false, snared: false, blind: false, silenced: false, cursed: false}
@@ -54,7 +55,7 @@ function Battle({}) {
     return (
         <div className="Battle">
             {/* battleOver.battleOver */}
-            { battleOver.battleOver ? <BattleOver battleOver={battleOver}/> :
+            { battleOver.battleOver ? <BattleOver battleOver={battleOver} dungeonEnemy={dungeonEnemy}/> :
             <>
                 <Character character={player} abilityController={battleController}/>
                 <section/>

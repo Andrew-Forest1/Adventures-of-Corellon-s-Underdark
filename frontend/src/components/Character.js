@@ -20,7 +20,7 @@ function Character({character}){
                 setCharacter(character)
               })
             } else {
-              resp.json().then(messageObj => alert(messageObj.errors))
+              resp.json().then(messageObj => alert(messageObj.error))
             }
           })
         navigate(`${character.id}`)

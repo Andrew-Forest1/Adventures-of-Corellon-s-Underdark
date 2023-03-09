@@ -4,6 +4,7 @@ const UserContext = createContext()
 const CharacterContext = createContext()
 const EnemyContext = createContext()
 const DungeonContext = createContext()
+const DungeonEnemyContext = createContext()
 
 const UserProvider = ({children}) => {
     const [user, setUser] = useState(null);
@@ -44,4 +45,14 @@ const DungeonProvider = ({children}) => {
     )
 }
 
-export { UserContext, UserProvider,  CharacterContext, CharacterProvider, EnemyContext, EnemyProvider, DungeonContext, DungeonProvider}
+const DungeonEnemyProvider = ({children}) => {
+    const [dungeonEnemy, setDungeonEnemy] = useState(null);
+    
+    return (
+        <DungeonEnemyContext.Provider value={{dungeonEnemy, setDungeonEnemy}}>
+            {children}
+        </DungeonEnemyContext.Provider>
+    )
+}
+
+export { UserContext, UserProvider,  CharacterContext, CharacterProvider, EnemyContext, EnemyProvider, DungeonContext, DungeonProvider, DungeonEnemyContext, DungeonEnemyProvider}

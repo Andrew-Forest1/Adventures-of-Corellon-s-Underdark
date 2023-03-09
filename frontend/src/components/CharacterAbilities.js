@@ -30,7 +30,7 @@ function CharacterAbilities({abilities, character, setCharacter}){
             })
           } else {
             res.json()
-            .then(msg => alert(msg.errors))
+            .then(msg => alert(msg.error))
           }
         })
 

@@ -14,7 +14,7 @@ function Dungeons({}){
             })
           } else {
             res.json()
-            .then(msg => alert(msg))
+            .then(msg => alert(msg.error))
           }
         })
     }, []);

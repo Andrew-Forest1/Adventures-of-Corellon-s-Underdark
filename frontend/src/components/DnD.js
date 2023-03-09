@@ -35,6 +35,9 @@ function DnD({}){
             .then((resp) => {
               console.log(resp)
             })
+          }else{
+            res.json()
+            .then(msg => alert(msg.error))
           }
         })
     }

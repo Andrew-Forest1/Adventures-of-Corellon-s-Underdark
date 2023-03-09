@@ -33,12 +33,12 @@ function SignUp({}) {
                 setUser(userObj)
               })
             } else {
-              resp.json().then(messageObj => alert(messageObj.errors))
+              resp.json().then(messageObj => alert(messageObj.error))
             }
           })
         .catch((error) => {
             console.log(error)
-          })
+        })
     }
 
     const handleChange = (e) => {

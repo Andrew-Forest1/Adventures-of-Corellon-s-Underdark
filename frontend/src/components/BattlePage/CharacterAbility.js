@@ -26,8 +26,9 @@ function CharacterAbility({ability, character, setCharacter, abilityController})
     }
 
     return(
-        <button onClick={handleClick}>
-            {flag ? <h2>{flag}</h2> : 
+        <button onClick={ ability ? handleClick : null}>
+            {ability ?
+                flag ? <h2>{flag}</h2> : 
                 <>
                     <h3>{ability.name}</h3>
                     {ability === abilityController.abilityController.casting ? <>
@@ -40,6 +41,10 @@ function CharacterAbility({ability, character, setCharacter, abilityController})
                         <> | </>
                         <span>Uses: {ability.uses} / {ability.maxUses}</span>
                     </>}
+                </>
+             : 
+                <>
+                    <h3>No Ability</h3>
                 </>
             }
         </button>

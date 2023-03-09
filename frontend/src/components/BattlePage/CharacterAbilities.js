@@ -9,7 +9,7 @@ function CharacterAbilities({abilities, character, abilityController}){
         if(abilities[i]){
             displayAbilities[i] = <CharacterAbility ability={abilityController.abilityController.playerAbilities[i]} abilityController={abilityController}/>
         }else{
-            displayAbilities[i] = <div>No Ability Selected</div>
+            displayAbilities[i] = <CharacterAbility ability={null} abilityController={abilityController}/>
         }
     }
 

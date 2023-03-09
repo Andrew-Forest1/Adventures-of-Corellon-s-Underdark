@@ -27,7 +27,10 @@ function Enemy({}){
                         image: enemy.image_url
                     })
                 })
-            }
+            }{
+                res.json()
+                .then(msg => alert(msg.error))
+              }
         })
     }, []);
 
@@ -58,7 +61,10 @@ function Enemy({}){
                     setEnemy(enemy)
                     alert("enemy saved")
                 })
-            }
+            }{
+                res.json()
+                .then(msg => alert(msg.error))
+              }
         })
     }
 
@@ -82,7 +88,10 @@ function Enemy({}){
                 .then((enemy) => {
                     setEnemy({...enemy})
                 })
-            }
+            }{
+                res.json()
+                .then(msg => alert(msg.error))
+              }
         })
     }
 
@@ -106,7 +115,10 @@ function Enemy({}){
                     .then((enemy) => {
                         setEnemy({...enemy})
                     })
-                }
+                }else {
+                    res.json()
+                    .then(msg => alert(msg.error))
+                  }
             })
         }
     }

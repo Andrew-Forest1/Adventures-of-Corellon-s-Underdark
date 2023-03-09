@@ -21,7 +21,7 @@ function EditDungeon({}){
             })
           } else {
             res.json()
-            .then(msg => alert(msg))
+            .then(msg => alert(msg.error))
           }
         })
     }, []);
@@ -47,7 +47,7 @@ function EditDungeon({}){
           })
         } else {
           res.json()
-          .then(msg => alert(msg.errors))
+          .then(msg => alert(msg.error))
         }
       })
 

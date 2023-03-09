@@ -148,12 +148,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_200317) do
   create_table "progresses", force: :cascade do |t|
     t.bigint "character_id", null: false
     t.bigint "dungeon_id", null: false
-    t.bigint "enemy_id", null: false
+    t.bigint "dungeon_enemy_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["character_id"], name: "index_progresses_on_character_id"
+    t.index ["dungeon_enemy_id"], name: "index_progresses_on_dungeon_enemy_id"
     t.index ["dungeon_id"], name: "index_progresses_on_dungeon_id"
-    t.index ["enemy_id"], name: "index_progresses_on_enemy_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -178,6 +178,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_200317) do
   add_foreign_key "enemy_abilities", "abilities", on_delete: :cascade
   add_foreign_key "enemy_abilities", "enemies", on_delete: :cascade
   add_foreign_key "progresses", "characters", on_delete: :cascade
+  add_foreign_key "progresses", "dungeon_enemies", on_delete: :cascade
   add_foreign_key "progresses", "dungeons", on_delete: :cascade
-  add_foreign_key "progresses", "enemies", on_delete: :cascade
 end

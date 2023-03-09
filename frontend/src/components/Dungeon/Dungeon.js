@@ -9,7 +9,7 @@ function Dungeon({}){
     const { character } = useContext(CharacterContext)
 
     useEffect(() => {
-        fetch(`/dungeons/1`)
+        fetch(`/dungeons/${window.location.pathname.split('/')[2]}`)
         .then((res) => {
           if(res.ok){
             res.json()
@@ -18,7 +18,7 @@ function Dungeon({}){
             })
           } else {
             res.json()
-            .then(msg => alert(msg))
+            .then(msg => alert(msg.error))
           }
         })
     }, []);
@@ -29,14 +29,14 @@ function Dungeon({}){
 
     if(!dungeon) return <span>Loading</span>
 
-    const dungeonEnemies = dungeon ? dungeon.enemies.map(enemy => <Enemy enemy={enemy} progresses={dungeon.progresses}/>) : <></>
+    const dungeonEnemies = dungeon ? dungeon.enemies.map((enemy, index) => <Enemy enemy={enemy} dungeonEnemy={dungeon.dungeon_enemies[index]}/>) : <></>
     const characterProgression = dungeon.progresses.filter(progress => progress.character_id === character.id)
 
     return (
         <div>
             <h2>{dungeon.name}</h2>
-            <h3>Enemies</h3>
             <p>{dungeon.description}</p>
+            <h3>Enemies</h3>
             {dungeonEnemies}
             {characterProgression.length == dungeon.enemies.length ? <button onClick={handleClick}>Dungeon Complete</button> : <button onClick={handleClick}>Back</button>}
         </div>

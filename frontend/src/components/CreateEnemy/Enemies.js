@@ -16,7 +16,7 @@ function Enemies({}){
             })
           } else {
             res.json()
-            .then(msg => alert(msg))
+            .then(msg => alert(msg.error))
         }
         })
     }, []);
@@ -35,13 +35,14 @@ function Enemies({}){
             },
             body: JSON.stringify({name: input})
           })
-          .then(resp => {
-            if (resp.ok) {
-              resp.json().then(enemy => {
+          .then(res => {
+            if (res.ok) {
+              res.json().then(enemy => {
                 setEnemies(current => [enemy, ...current])
               })
             } else {
-              resp.json().then(messageObj => console.log(messageObj.errors))
+              res.json()
+              .then(msg => alert(msg.error))
             }
           })
     }

@@ -28,6 +28,9 @@ function CreateDungeon({}) {
             if(res.ok){
                 res.json()
                 .then(dungeon => navigate(`/editdungeon/${dungeon.id}`))
+            }else{
+                res.json()
+                .then(msg => alert(msg.error))
             }
         })
     }

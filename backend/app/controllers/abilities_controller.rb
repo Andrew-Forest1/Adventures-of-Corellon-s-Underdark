@@ -1,5 +1,6 @@
 class AbilitiesController < ApplicationController
     before_action :find_ability, only: [:show, :destroy, :update, :image_update]
+    #skip_before_action :authorized_user
 
     def create
         ability = Ability.create!(ability_params)

@@ -21,9 +21,11 @@ function Character({character, abilityController}){
                 <span>Mana: {character.mana} / {character.spirit * 10 + 90}</span>
             </div>
             <br/>
-            <CharacterAbilities abilities={abilityController.player.abilities} character={character} abilityController={abilityController}/>
-            <SkipAbility abilityController={abilityController}/>
-            <UseItem abilityController={abilityController}/>
+            <div className='battleControls'>
+                <CharacterAbilities abilities={abilityController.player.abilities} character={character} abilityController={abilityController}/>
+                <SkipAbility abilityController={abilityController}/>
+                <UseItem abilityController={abilityController}/>
+            </div>
         </div>
     )
 }

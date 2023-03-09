@@ -11,6 +11,9 @@ function Abilities({}){
             .then((abilities) => {
               setAbilities(abilities)
             })
+          }else{
+            res.json()
+            .then(msg => alert(msg.error))
           }
         })
     }, []);

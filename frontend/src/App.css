@@ -48,8 +48,12 @@
 }
 
 .BattleCharacter button{
-    height: 20%;
+    height: 14%;
     width: 100%;
+}
+
+.battleControls{
+    height: 60%;
 }
 
 .BattleLog{

@@ -66,6 +66,9 @@ function Character({}){
                     setCharacter(character)
                     alert("Character saved")
                 })
+            }else{
+                res.json()
+                .then(msg => alert(msg.error))
             }
         })
     }
@@ -90,8 +93,39 @@ function Character({}){
                 .then((character) => {
                     setCharacter({...character})
                 })
-            }
+            }else{
+                res.json()
+                .then(msg => alert(msg.error))
+              }
         })
+    }
+
+    const handleDrop = (e) => {
+        e.preventDefault()
+        if(e.dataTransfer.getData('URL')){
+            console.log(e.dataTransfer.getData('URL'))
+            setState(current => {return {...current, image: e.dataTransfer.getData('URL') }})
+            console.log(state)
+            const formData = new FormData();
+            formData.append('image', e.dataTransfer.getData('URL'));
+            formData.append('id', state.id);
+    
+            fetch('/characterimage', {
+              method: 'PUT',
+              body: formData
+            })
+            .then((res) => {
+                if(res.ok){
+                    res.json()
+                    .then((character) => {
+                        setCharacter({...character})
+                    })
+                }else {
+                    res.json()
+                    .then(msg => alert(msg.error))
+                  }
+            })
+        }
     }
 
     if(!character) return <h1>Loading</h1>
@@ -101,7 +135,7 @@ function Character({}){
             <div className='editCharacterStats'>
                 <h1>{character.name} Level: {character.level}</h1>
                 <h2>Experience: {character.experience}</h2>
-                <img src={character.image_url}/>
+                {character.image_url ? <img onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}} src={character.image_url}/> : <p onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}}>Add Image</p>}
                 <form onSubmit={handleSubmit}>
                     <input type="file" accept="image/*" multiple={false} onChange={onImageChange}/>
                     <button type="submit">Upload</button>

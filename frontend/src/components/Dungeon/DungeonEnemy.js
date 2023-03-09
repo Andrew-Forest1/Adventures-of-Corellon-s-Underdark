@@ -1,12 +1,13 @@
 import {useState, useEffect, useContext} from 'react'
-import { CharacterContext, EnemyContext } from '../context/userContext';
+import { CharacterContext, DungeonEnemyContext, EnemyContext } from '../context/userContext';
 import { useNavigate } from "react-router-dom";
 
-function Enemy({enemy, dungeon, progresses, editMode, setDungeon}){
+function Enemy({enemy, dungeon, dungeonEnemy, editMode, setDungeon}){
     const navigate = useNavigate()
     const {setEnemy} = useContext(EnemyContext);
     const {character} = useContext(CharacterContext)
-    const defeated = progresses.find(progress => progress.enemy_id === enemy.id && progress.character_id === character.id)
+    const { setDungeonEnemy } = useContext(DungeonEnemyContext)
+    const defeated = character.progresses.find(progress => progress.dungeon_enemy_id == dungeonEnemy.id)
 
     const handleClick = () => {
         fetch(`/enemies/${enemy.id}`)
@@ -15,8 +16,12 @@ function Enemy({enemy, dungeon, progresses, editMode, setDungeon}){
                 res.json()
                 .then((enemyObj) => {
                     setEnemy(enemyObj)
+                    setDungeonEnemy(dungeonEnemy)
                     navigate("/battle")
                 })
+            }else{
+                res.json()
+                .then(msg => alert(msg.error))
             }
         })
     }

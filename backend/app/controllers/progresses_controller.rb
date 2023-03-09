@@ -29,7 +29,7 @@ class ProgressesController < ApplicationController
     private
 
     def progress_params
-        params.permit(:character_id, :dungeon_id, :enemy_id)
+        params.permit(:character_id, :dungeon_id, :dungeon_enemy_id)
     end
 
     def find_progress
