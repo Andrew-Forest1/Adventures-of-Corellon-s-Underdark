@@ -6,10 +6,14 @@ function CharacterAbilities({abilities, character, abilityController}){
     const [show, setShow] = useState(false);
 
     for (let i = 0; i < 5; i++) {
-        if(abilities[i]){
-            displayAbilities[i] = <CharacterAbility ability={abilityController.abilityController.playerAbilities[i]} abilityController={abilityController}/>
+        if(character.status.isStunned()){
+            displayAbilities[i] = <button><h3>You are stunned, skip turn to continue</h3></button>
         }else{
-            displayAbilities[i] = <CharacterAbility ability={null} abilityController={abilityController}/>
+            if(abilities[i]){
+                displayAbilities[i] = <CharacterAbility ability={abilityController.abilityController.playerAbilities[i]} abilityController={abilityController}/>
+            }else{
+                displayAbilities[i] = <CharacterAbility ability={null} abilityController={abilityController}/>
+            }
         }
     }
 

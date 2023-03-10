@@ -33,15 +33,42 @@ class ActionController{
         }else{
             const target = this.turn === "player" ? this.enemy : this.player
             const attacker = this.turn !== "player" ? this.enemy : this.player
-            target.health -= ability.damage
-            this.log = {combatent: this.turn ,action : `${attacker.name} used ${ability.name} to inflict ${ability.damage} damage on ${target.name}`}
+            this.applyDamage(ability, target, attacker)
+            this.applyEffect(ability, target)
         }
-        
     }
 
     consumeMana(ability){
         const target = this.turn === "player" ? this.player : this.enemy 
         target.mana -= ability.manaCost
+    }
+
+    applyEffect(ability, target){
+        target.status.applyEffect(ability.effect, ability.duration)
+    }
+
+    applyDamage(ability, target, attacker){
+        let damage = ability.damage
+
+        switch (ability.type) {
+            case 'melee':
+                damage = damage * attacker.strength / 2
+                break;
+            case 'range':
+                damage = damage * attacker.agility / 2
+                break;
+            case 'spell':
+                damage = damage * attacker.intellect / 2
+                break;
+            case 'support':
+                damage = damage * attacker.strength / 2
+                break;
+            default:
+                break;
+        }
+        damage -= target.vitality
+        damage > 0 ? target.health -= damage : damage = 0
+        this.log = {combatent: this.turn ,action : `${attacker.name} used ${ability.name} to inflict ${damage} damage on ${target.name}`}
     }
 }
 

@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState, useContext } from 'react'
 import { UserContext } from '../context/userContext';
-import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -33,39 +32,58 @@ const theme = createTheme();
 
 export default function SignIn() {
   const {setUser} = useContext(UserContext);
-  const navigate = useNavigate()
-
-  const [user, setUserObj] = useState({
-      username: "",
-      password: ""
-  });
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     const data = new FormData(e.currentTarget);
-    const user = {
+    const newUser = {
       username: data.get('username'),
       password: data.get('password'),
+      confirm: data.get('confirmpassword'),
+      email: data.get('email')
     }
 
-    fetch("/login",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
+    newUser.password === newUser.confirm ? signup(newUser) : alert('Confirm Password does not match Password')
+}
+
+const signup = (newUser) => {
+    fetch("/users", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(newUser)
     })
     .then(resp => {
-      if (resp.ok) {
-        resp.json().then(userObj => {
-          setUser(userObj)
-        })
-      } else {
-        resp.json().then(messageObj => alert(messageObj.error))
-      }
+        if (resp.ok) {
+          resp.json().then(userObj => {
+            setUser(userObj)
+            fetch("/login",{
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(newUser)
+              })
+              .then(resp => {
+                if (resp.ok) {
+                  resp.json().then(userObj => {
+                    setUser(userObj)
+                  })
+                } else {
+                  resp.json().then(messageObj => alert(messageObj.error))
+                }
+              })
+          })
+        } else {
+          resp.json().then(messageObj => alert(messageObj.error))
+        }
+      })
+    .catch((error) => {
+        console.log(error)
     })
-  }
+}
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,6 +108,16 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
+              id="email"
+              label="Email"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
               id="username"
               label="Username"
               name="username"
@@ -106,9 +134,15 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="confirmpassword"
+              label="Confirm Password"
+              type="password"
+              id="confirmpassword"
+              autoComplete="confirm-password"
             />
             <Button
               type="submit"
@@ -116,7 +150,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Sign Up
             </Button>
             <Grid container>
               <Grid item xs>
@@ -125,8 +159,8 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link  href="signup" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="/login" variant="body2">
+                  {"Have an account? Sign In"}
                 </Link>
               </Grid>
             </Grid>

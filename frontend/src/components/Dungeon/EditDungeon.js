@@ -2,7 +2,7 @@ import { useContext, useEffect, useState} from "react"
 import { useNavigate } from "react-router-dom"
 import { CharacterContext } from "../context/userContext";
 import Enemy from "./DungeonEnemy"
-import Enemies from "../CreateEnemy/Enemies";
+import Enemies from "../Enemy/Enemies";
 import { DragContext } from "../context/dragContext";
 
 function EditDungeon({}){
@@ -57,7 +57,7 @@ function EditDungeon({}){
 
     if(!dungeon) return <span>Loading</span>
 
-    const dungeonEnemies = dungeon ? dungeon.enemies.map(enemy => <Enemy enemy={enemy} dungeon={dungeon} progresses={dungeon.progresses} editMode={true} setDungeon={setDungeon}/>) : <></>
+    const dungeonEnemies = dungeon ? dungeon.enemies.map( (enemy, index) => <Enemy enemy={enemy} dungeon={dungeon} progresses={dungeon.progresses} dungeonEnemy={dungeon.dungeon_enemies[index]} editMode={true} setDungeon={setDungeon}/>) : <></>
     const characterProgression = dungeon.progresses.filter(progress => progress.character_id === character.id)
 
     return (

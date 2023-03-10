@@ -27,10 +27,10 @@ function Enemy({}){
                         image: enemy.image_url
                     })
                 })
-            }{
+            }else{
                 res.json()
                 .then(msg => alert(msg.error))
-              }
+            }
         })
     }, []);
 
@@ -125,11 +125,15 @@ function Enemy({}){
 
     if(!enemy) return <h1>Loading</h1>
 
+    const img = new Image()
+    img.src = enemy.image_url
+    const imgCSS = img.naturalWidth > img.naturalHeight ? 'imageWidth' : 'imageHeight'
+
     return(
         <div className='editCharacter'>
             <div className='editCharacterStats'>
                 <h1>{enemy.name} Level: {enemy.level}</h1>
-                {enemy.image_url ? <img onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}} src={enemy.image_url}/> : <p onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}}>Add Image</p>}
+                {enemy.image_url ? <img className={imgCSS} onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}} src={enemy.image_url}/> : <p onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}}>Add Image</p>}
                 <form onSubmit={handleSubmit}>
                     <input type="file" accept="image/*" multiple={false} onChange={onImageChange}/>
                     <button type="submit">Upload</button>

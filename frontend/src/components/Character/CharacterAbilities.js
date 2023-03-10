@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
-import { DragContext } from './context/dragContext'
+import { DragContext } from '../context/dragContext'
 import CharacterAbility from './CharacterAbility';
-import { CharacterContext } from './context/userContext'
+import { CharacterContext } from '../context/userContext'
 
 function CharacterAbilities({abilities, character, setCharacter}){
     const displayAbilities = []

@@ -7,6 +7,7 @@ import BattleController from "./Controllers/BattleController";
 import AbilityController from "./Controllers/AbilityController";
 import { useNavigate } from "react-router-dom";
 import BattleOver from './BattleOver'
+import Status from "./Controllers/StatusController";
 
 function Battle({}) {
     // const dummy = {
@@ -27,8 +28,8 @@ function Battle({}) {
     const navigate = useNavigate()
     const [actions, setActions] = useState([]);
     const status = {stunned: false, snared: false, blind: false, silenced: false, cursed: false}
-    const [player, setPlayer] = useState({...character, health: character.vitality * 10 + 90, mana: character.spirit * 10 + 90, status: {...status}});
-    const [enemyF, setEnemyF] = useState( enemy ? {...enemy, health: enemy.vitality * 10 + 90, mana: enemy.spirit * 10 + 90, status: {...status}} : null);
+    const [player, setPlayer] = useState({...character, health: character.vitality * 10 + 90, mana: character.spirit * 10 + 90, status: new Status()});
+    const [enemyF, setEnemyF] = useState( enemy ? {...enemy, health: enemy.vitality * 10 + 90, mana: enemy.spirit * 10 + 90, status: new Status()} : null);
     const [battleOver, setBattleOver] = useState({battleOver:false, outCome: "Battle Ongoing"});
     const [battleController, setBattleController] = useState(new BattleController(player, enemyF, setActions, setBattleOver));
     

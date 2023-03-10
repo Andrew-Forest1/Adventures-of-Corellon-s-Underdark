@@ -1,3 +1,3 @@
 class ConsumableSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :abilities
 end

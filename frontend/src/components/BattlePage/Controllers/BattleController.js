@@ -1,7 +1,7 @@
 import AbilityController from "./AbilityController"
 import ActionController from "./ActionController"
 import EnemyController from "./EnemyController"
-import EnemyCon from "./EnemyController"
+import Status from "./StatusController"
 
 class BattleController{
     constructor(player, enemy, setActions, setBattleOver){
@@ -14,6 +14,7 @@ class BattleController{
             this.setActions = setActions
             this.setBattleOver = setBattleOver
         }
+        console.log("battle controller init")
     }
 
     main(ability){

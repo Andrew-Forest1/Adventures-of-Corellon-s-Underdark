@@ -5,6 +5,7 @@ import Enemy from './Enemy';
 function Enemies({}){
     const [enemies, setEnemies] = useState([]);
     const [input, setInput] = useState("");
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         fetch("/enemies")
@@ -47,20 +48,39 @@ function Enemies({}){
           })
     }
 
-    const displayEnemies = enemies.map(enemy => {
+    const sortEnemies = enemies.sort((a, b) => {
+      if (a.name < b.name) {
+        return -1;
+      }
+      if (a.name > b.name) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    } )
+
+    const handleSearch = (e) => {
+      setSearch(e.target.value)
+    }
+
+    const filteredEnemies = enemies.filter(enemy => enemy.name.toLowerCase().includes(search.toLowerCase()))
+
+    const displayEnemies = filteredEnemies.map(enemy => {
         return(
             <Enemy enemy={enemy} key={enemy.name}/>
         )
     })
 
     return (
-        <div>
-            {displayEnemies}
-            <form onSubmit={handleSubmit}>
-                <input type="text" name="name" onChange={handleChange} value={input} placeholder='New Enemy Name'/>
-                <button type="submit" name="submit">Create Enemy</button>
-            </form>
-        </div>
+      <div>
+        <input type='text' placeholder='search by enemy name' value={search} onChange={handleSearch}/>
+        {displayEnemies}
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="name" onChange={handleChange} value={input} placeholder='New Enemy Name'/>
+          <button type="submit" name="submit">Create Enemy</button>
+        </form>
+      </div>
     )
 }
 

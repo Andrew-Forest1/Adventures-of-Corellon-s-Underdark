@@ -1,4 +1,4 @@
-import {UserContext, CharacterContext} from './context/userContext'
+import {UserContext, CharacterContext} from '../context/userContext'
 import React, { useState, useEffect, useContext } from 'react';
 import Character from './Character';
 
@@ -17,7 +17,7 @@ function Characters({}){
             })
           } else {
             res.json()
-            .then(msg => alert(msg))
+            .then(msg => alert(msg.error))
         }
         })
     }, []);
@@ -52,7 +52,7 @@ function Characters({}){
 
     const displayCharacters = filteredCharacters.map(character => {
         return(
-            <Character character={character} key={character.name}/>
+            <Character character={character} setCharacters={setCharacters} key={character.name}/>
         )
     })
 

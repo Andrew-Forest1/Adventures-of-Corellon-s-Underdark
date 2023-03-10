@@ -1,22 +1,23 @@
 import './App.css';
 import React, { useState, useEffect, useContext } from 'react';
 import { Routes, Route } from "react-router-dom";
+import Login from './components/Login-Logout/Login'
 import SignUp from './components/Login-Logout/Signup'
-import Login from './components/Login-Logout/Login';
-import Logout from './components/Login-Logout/Logout';
+import MUISignup from './components/Login-Logout/MUISignup'
 import { UserContext, CharacterContext } from './components/context/userContext'
-import Characters from './components/Characters';
-import EditCharacter from './components/EditCharacter'
+import Characters from './components/Character/Characters';
+import EditCharacter from './components/Character/EditCharacter'
 import Battle from './components/BattlePage/Battle'
 import Menu from './components/Menu'
-import EditEnemy from './components/CreateEnemy/EditEnemy';
-import Enemies from './components/CreateEnemy/Enemies'
+import EditEnemy from './components/Enemy/EditEnemy';
+import Enemies from './components/Enemy/Enemies'
 import Dungeons from './components/Dungeon/Dungeons';
 import Dungeon from './components/Dungeon/Dungeon';
 import ModalMenu from "./components/ModalMenu";
 import DnD from './components/DnD'
 import EditDungeon from './components/Dungeon/EditDungeon';
 import CreateDungeon from './components/Dungeon/CreateDungeon';
+import CreateAbility from './components/CreateAbility';
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -70,6 +71,7 @@ function App() {
                 <Route path="/dungeons/*" element={<Dungeon/>}/>
                 <Route path='/editdungeon/*' element={<EditDungeon/>}/>
                 <Route path='/createdungeon' element={<CreateDungeon/>}/>
+                <Route path='/createability' element={<CreateAbility/>}/>
                 <Route path='/dnd' element={<DnD/>}/>
               </>
             }
@@ -77,7 +79,7 @@ function App() {
         </div> </> : 
         <Routes>
           <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<SignUp/>}/>
+          <Route path="/signup" element={<MUISignup/>}/>
           <Route path="*" element={<Login/>}/>
         </Routes>
       }

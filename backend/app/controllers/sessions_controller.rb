@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
             session[:user_id] = user.id
             render json: user, status: :ok
         else
-            render json: {errors: "Incorrect username or password."}, status: 451
+            render json: {error: "Incorrect username or password."}, status: 451
         end
     end
 
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
             session[:character_id] = character.id
             render json: character, status: :ok
         else
-            render json: {errors: "Invalid Character"}, status: :not_found
+            render json: {error: "Invalid Character"}, status: :not_found
         end
     end
 

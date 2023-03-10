@@ -1,7 +1,7 @@
 import {useState, useContext, useEffect} from 'react'
-import { CharacterContext, UserContext } from './context/userContext'
+import { CharacterContext, UserContext } from '../context/userContext'
 import { useNavigate } from "react-router-dom";
-import Abilities from './Abilities';
+import Abilities from '../Abilities';
 import CharacterAbilities from './CharacterAbilities';
 
 function Character({}){
@@ -130,12 +130,16 @@ function Character({}){
 
     if(!character) return <h1>Loading</h1>
 
+    const img = new Image()
+    img.src = character.image_url
+    const imgCSS = img.naturalWidth > img.naturalHeight ? 'imageWidth' : 'imageHeight'
+
     return(
         <div className='editCharacter'>
             <div className='editCharacterStats'>
                 <h1>{character.name} Level: {character.level}</h1>
                 <h2>Experience: {character.experience}</h2>
-                {character.image_url ? <img onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}} src={character.image_url}/> : <p onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}}>Add Image</p>}
+                {character.image_url ? <img className={imgCSS} onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}} src={character.image_url}/> : <p onDrop={handleDrop} onDragOver={(e) => {e.preventDefault()}}>Add Image</p>}
                 <form onSubmit={handleSubmit}>
                     <input type="file" accept="image/*" multiple={false} onChange={onImageChange}/>
                     <button type="submit">Upload</button>

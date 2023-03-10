@@ -31,6 +31,22 @@ function SignUp({}) {
             if (resp.ok) {
               resp.json().then(userObj => {
                 setUser(userObj)
+                fetch("/login",{
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(addNewUser)
+                  })
+                  .then(resp => {
+                    if (resp.ok) {
+                      resp.json().then(userObj => {
+                        setUser(userObj)
+                      })
+                    } else {
+                      resp.json().then(messageObj => alert(messageObj.error))
+                    }
+                  })
               })
             } else {
               resp.json().then(messageObj => alert(messageObj.error))

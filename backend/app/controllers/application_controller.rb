@@ -12,7 +12,7 @@ class ApplicationController < ActionController::API
     end
 
     def authorized_user
-        render json: {errors: "unauthorized"}, status: :unauthorized unless current_user
+        render json: {error: "unauthorized"}, status: :unauthorized unless current_user
     end
 
     private 

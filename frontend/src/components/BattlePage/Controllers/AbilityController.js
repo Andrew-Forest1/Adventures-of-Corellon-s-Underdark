@@ -11,7 +11,9 @@ class AbilityController{
                 maxUses: ability.uses,
                 manaCost: ability.mana,
                 castTime: ability.cast,
-                castingCounter: ability.cast
+                castingCounter: ability.cast,
+                effect: ability.effect,
+                duration: ability.duration
             }
             return a
         })
@@ -23,6 +25,8 @@ class AbilityController{
     playerAction(ability){
         if(this.playerStunned() || ability.ability_type === "skip"){
             this.cooldownCountDown()
+            this.player.status.update()
+            this.casting = null
             return ability.ability_type === "skip" ? ability : this.error
         }else{
             const abilityInvoked = this.playerAbilities.find(ab => ab.name === ability.name)
@@ -36,6 +40,7 @@ class AbilityController{
                     }else{
                         this.cooldownCountDown()
                         this.updateCasting(ability)
+                        this.player.status.update()
                         return {
                             name: "skip",
                             type: "skip",
@@ -49,6 +54,7 @@ class AbilityController{
                 }
 
                 this.cooldownCountDown()
+                this.player.status.update()
                 if(this.isInstant(abilityInvoked)){
                     abilityInvoked.cooldownCounter = abilityInvoked.cooldownDuration
                     return abilityInvoked
@@ -58,7 +64,7 @@ class AbilityController{
                         name: "skip",
                         type: "skip",
                         ability_type: "skip",
-                        description: `stared casting ${this.casting.name}, ready ${this.casting.castingCounter === 1 ? "next turn" : `in ${this.casting.castingCounter - 1} turn(s)`}`,
+                        description: `started casting ${this.casting.name}, ready ${this.casting.castingCounter === 1 ? "next turn" : `in ${this.casting.castingCounter - 1} turn(s)`}`,
                         damage: 0,
                     }
                 }
@@ -70,7 +76,7 @@ class AbilityController{
 
     playerStunned(){
         this.error = {type: "skip", description: `${this.player.name} is stunned`}
-        return this.player.status.stunned
+        return this.player.status.isStunned()
     }
 
     playerSnared(){

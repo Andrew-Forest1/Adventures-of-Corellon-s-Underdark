@@ -113,12 +113,19 @@ Body{
     display: flex;
 }
 
-.editCharacter img{
-    height: 50vh;
+.editCharacterStats {
+    width: 30vw;
+    height: 86vh;
+    border: solid;
+    margin: 5px;
 }
 
-.editCharacterStats{
-    width: 30vw;
+.imageWidth{
+    width: 100%;
+}
+
+.imageHeight{
+    height: 40%;
 }
 
 .modalBackground{
