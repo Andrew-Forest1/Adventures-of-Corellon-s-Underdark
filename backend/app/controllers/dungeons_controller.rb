@@ -16,7 +16,7 @@ class DungeonsController < ApplicationController
 
     def destroy
         @dungeon.destroy
-        render json: {}, status: :gone
+        render json: {}, status: :ok
     end
 
     def update

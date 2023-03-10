@@ -19,7 +19,7 @@ function Dungeons({}){
         })
     }, []);
 
-    const displayDungeons = dungeons.map(dungeon => <Dungeon dungeon={dungeon}/>)
+    const displayDungeons = dungeons.map(dungeon => <Dungeon dungeon={dungeon} setDungeons={setDungeons}/>)
 
     return (
         <div>

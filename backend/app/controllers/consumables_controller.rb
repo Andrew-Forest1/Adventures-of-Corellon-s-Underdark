@@ -17,7 +17,7 @@ class ConsumablesController < ApplicationController
 
     def destroy
         @consumable.destroy
-        render json: {}, status: :gone
+        render json: {}, status: :ok
     end
 
     def update

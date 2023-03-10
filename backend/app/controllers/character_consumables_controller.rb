@@ -17,7 +17,7 @@ class CharacterConsumablesController < ApplicationController
 
     def destroy
         @character_consumable.destroy
-        render json: {}, status: :gone
+        render json: {}, status: :ok
     end
 
     def update

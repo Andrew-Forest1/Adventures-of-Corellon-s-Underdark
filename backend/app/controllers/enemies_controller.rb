@@ -19,7 +19,7 @@ class EnemiesController < ApplicationController
 
     def destroy
         @enemy.destroy
-        render json: {}, status: :gone
+        render json: {}, status: :ok
     end
 
     def update
