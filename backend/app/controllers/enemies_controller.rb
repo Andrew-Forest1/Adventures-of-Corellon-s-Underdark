@@ -3,9 +3,10 @@ require 'open-uri'
 
 class EnemiesController < ApplicationController
     before_action :find_enemy, only: [:show, :destroy, :update, :image_update]
+    #skip_before_action :authorized_user
 
     def create
-        enemy = Enemy.create!(name: enemy_params[:name], level: 1, strength: 1, agility: 1, intellect: 1, vitality: 1, spirit: 1)
+        enemy = Enemy.create!(name: enemy_params[:name], level: 1, strength: 1, agility: 1, intellect: 1, vitality: 1, spirit: 1, experience: 1)
         render json: enemy, status: :created
     end
 
@@ -45,7 +46,7 @@ class EnemiesController < ApplicationController
     end
 
     def update_enemy_params
-        params.permit(:level, :strength, :agility, :intellect, :vitality, :spirit)
+        params.permit(:level, :strength, :agility, :intellect, :vitality, :spirit, :experience)
     end
 
     def find_enemy

@@ -1,5 +1,5 @@
 class EnemySerializer < ActiveModel::Serializer
-  attributes :id, :name, :level, :strength, :agility, :intellect, :vitality, :spirit, :image_url, :abilities
+  attributes :id, :name, :level, :strength, :agility, :intellect, :vitality, :spirit, :image_url, :abilities, :experience
 
   def abilities
     sorted = self.object.enemy_abilities.sort_by(&:slot)

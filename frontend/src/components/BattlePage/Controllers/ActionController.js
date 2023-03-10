@@ -52,21 +52,21 @@ class ActionController{
 
         switch (ability.type) {
             case 'melee':
-                damage = damage * attacker.strength / 2
+                damage = Math.floor(damage *  (attacker.strength < 2 ? 1 : attacker.strength / 2))
                 break;
             case 'range':
-                damage = damage * attacker.agility / 2
+                damage = Math.floor(damage * (attacker.agility < 2 ? 1 :attacker.agility / 2))
                 break;
             case 'spell':
-                damage = damage * attacker.intellect / 2
+                damage = Math.floor(damage * (attacker.intellect < 2 ? 1 :attacker.intellect / 2))
                 break;
             case 'support':
-                damage = damage * attacker.strength / 2
+                damage = damage 
                 break;
             default:
                 break;
         }
-        damage -= target.vitality
+        damage = damage - target.vitality
         damage > 0 ? target.health -= damage : damage = 0
         this.log = {combatent: this.turn ,action : `${attacker.name} used ${ability.name} to inflict ${damage} damage on ${target.name}`}
     }

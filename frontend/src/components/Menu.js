@@ -9,6 +9,7 @@ function Menu({setMenu}){
             <button onClick={() => {navigate('/enemies')}}>Enemies</button>
             <button onClick={() => {navigate('/createdungeon')}}>Create Dungeon</button>
             <button onClick={() => {navigate('/createability')}}>Create Ability</button>
+            <button onClick={() => {navigate('/shop')}}>Shop</button>
             <button onClick={() => {navigate('/dnd')}}>Dungeons and Dragons API</button>
         </nav>
     )

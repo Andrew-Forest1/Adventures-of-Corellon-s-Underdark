@@ -46,6 +46,10 @@ function Enemy({}){
         }
     }
 
+    const handleChange = (e) => {
+        setEnemy(current => {return {...current, experience: e.target.value}})
+    }
+
     const handleSave = () => {
         fetch(`/enemies/${window.location.href.split('/')[4]}`, {
             method: 'PUT',
@@ -162,6 +166,10 @@ function Enemy({}){
                     <label>Spirit: {enemy.spirit}</label>
                     <button name="spirit" onClick={handleAdd}>+</button>
                     <button name="spirit" onClick={handleSubtract}>-</button>
+                </div>
+                <div>
+                    <label>Experience: </label>
+                    <input type='number' onChange={handleChange} value={enemy.experience}/>
                 </div>
                 <button onClick={handleSave}>Save</button>
             </div>

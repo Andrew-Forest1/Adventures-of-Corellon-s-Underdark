@@ -1,8 +1,9 @@
 class CharactersController < ApplicationController
     before_action :find_character, only: [:show, :destroy, :update, :image_update]
+    #skip_before_action :authorized_user
 
     def create
-        character = Character.create!(user_id: character_params[:user_id], name: character_params[:name], level: 1, experience: 0, points: 13, strength: 1, agility: 1, intellect:1, vitality: 1, spirit: 1)
+        character = Character.create!(user_id: character_params[:user_id], name: character_params[:name], level: 1, experience: 0, points: 13, strength: 1, agility: 1, intellect:1, vitality: 1, spirit: 1, health: 100, gold: 0)
         render json: character, status: :created
     end
 
@@ -41,7 +42,7 @@ class CharactersController < ApplicationController
     end
 
     def update_character_params
-        params.permit(:level, :experience, :points, :strength, :agility, :intellect, :vitality, :spirit)
+        params.permit(:level, :experience, :points, :strength, :agility, :intellect, :vitality, :spirit, :health, :gold)
     end
 
     def find_character
