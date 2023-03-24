@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import CharacterAbilities from './CharacterAbilities';
 import SkipAbility from './SkipAbility';
 import UseItem from './UseItem';
+import CharacterItems from './CharacterItems';
 
 function Character({character, abilityController}){
     const { user } = useContext(UserContext)
     const navigate = useNavigate()
+    const [showItems, setShowItems] = useState(false);
 
     if(!character) return <h1>Loading</h1>
 
@@ -22,9 +24,18 @@ function Character({character, abilityController}){
             </div>
             <br/>
             <div className='battleControls'>
-                <CharacterAbilities abilities={abilityController.player.abilities} character={character} abilityController={abilityController}/>
-                <SkipAbility abilityController={abilityController}/>
-                <UseItem abilityController={abilityController}/>
+                {showItems ? 
+                <>
+                    <CharacterItems character={character} abilityController={abilityController}/>
+                    <button onClick={() => {setShowItems(current => !current)}}>Back</button>
+                </>
+                :
+                <>
+                    <CharacterAbilities abilities={abilityController.player.abilities} character={character} abilityController={abilityController}/>
+                    <SkipAbility abilityController={abilityController}/>
+                    <UseItem setShowItems={setShowItems}/>
+                </>
+                }
             </div>
         </div>
     )

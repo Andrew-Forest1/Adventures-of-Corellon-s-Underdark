@@ -1,7 +1,7 @@
 class ProgressesController < ApplicationController
     before_action :find_progress, only: [:show, :destroy, :update]
 
-    skip_before_action :authorized_user
+    #skip_before_action :authorized_user
 
     def create
         progress = Progress.create!(progress_params)

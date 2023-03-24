@@ -42,7 +42,7 @@ class CharactersController < ApplicationController
     end
 
     def update_character_params
-        params.permit(:level, :experience, :points, :strength, :agility, :intellect, :vitality, :spirit, :health, :gold)
+        params.permit(:level, :experience, :points, :strength, :agility, :intellect, :vitality, :spirit, :health, :mana, :gold)
     end
 
     def find_character

@@ -1,10 +1,10 @@
 class CharacterConsumablesController < ApplicationController
     before_action :find_character_consumable, only: [:show, :destroy, :update, :image_update]
-    skip_before_action :authorized_user
+    #skip_before_action :authorized_user
 
     def create
         character_consumable = CharacterConsumable.create!(character_consumable_params)
-        render json: character_consumable, status: :created
+        render json: Character.find(params[:character_id]), status: :created
     end
 
     def index
@@ -28,7 +28,7 @@ class CharacterConsumablesController < ApplicationController
     private
 
     def character_consumable_params
-        params.permit(:consumable_id, :ability_id)
+        params.permit(:consumable_id, :character_id)
     end
 
     def find_character_consumable

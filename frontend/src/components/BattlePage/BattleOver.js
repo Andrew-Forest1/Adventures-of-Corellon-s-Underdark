@@ -2,11 +2,10 @@ import { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CharacterContext, DungeonContext, EnemyContext } from "../context/userContext";
 
-function BattleOver({battleOver, dungeonEnemy}){
+function BattleOver({battleOver, character, enemy, dungeonEnemy}){
     //*****************quick fixes with dungeon on this page, will have to reconsider how to change this in future******************************************
     const { dungeon } = useContext(DungeonContext)
-    const { character, setCharacter } = useContext(CharacterContext)
-    const { enemy } = useContext(EnemyContext)
+    const { setCharacter } = useContext(CharacterContext)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,6 +21,24 @@ function BattleOver({battleOver, dungeonEnemy}){
                 res.json()
                 .then(progress => {
                     setCharacter(current => {return {...current, progresses: [...current.progresses, progress]}})})
+            }else {
+                res.json()
+                .then(msg => alert(msg.error))
+              }
+            })
+
+            fetch(`/characters/${character.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({health: character.health, gold: character.gold + 5, experience: character.experience + enemy.experience})
+            })
+            .then(res => {if(res.ok){
+                res.json()
+                .then(character => {
+                    setCharacter(character)
+                })
             }else {
                 res.json()
                 .then(msg => alert(msg.error))

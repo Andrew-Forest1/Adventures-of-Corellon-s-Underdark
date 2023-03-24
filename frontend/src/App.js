@@ -18,6 +18,8 @@ import DnD from './components/DnD'
 import EditDungeon from './components/Dungeon/EditDungeon';
 import CreateDungeon from './components/Dungeon/CreateDungeon';
 import CreateAbility from './components/CreateAbility';
+import Shop from './components/Shop/Shop'
+import Inventory from './components/Inventory/Inventory';
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -73,6 +75,8 @@ function App() {
                 <Route path='/createdungeon' element={<CreateDungeon/>}/>
                 <Route path='/createability' element={<CreateAbility/>}/>
                 <Route path='/dnd' element={<DnD/>}/>
+                <Route path='/shop' element={<Shop/>}/>
+                <Route path='/inventory' element={<Inventory/>}/>
               </>
             }
           </Routes>

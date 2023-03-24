@@ -1,17 +1,9 @@
 import { useState } from "react";
 
-function UseItem({abilityController}){
-    const [hide, setHide] = useState(true);
-    const ability = {
-        name: "skip",
-        type: "skip",
-        ability_type: "skip",
-        description: "skipped turn",
-        damage: 0,
-    }
+function UseItem({setShowItems}){
 
     const handleClick = () => {
-        //abilityController.main(ability)
+        setShowItems(current => !current)
     }
 
     return(

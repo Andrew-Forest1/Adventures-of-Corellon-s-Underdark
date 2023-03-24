@@ -21,11 +21,25 @@ class Character < ApplicationRecord
     validates :name, length: {maximum: 20}
     validates :strength, :agility, :intellect, :vitality, :spirit, numericality: {greater_than: 0}
     validates :points, :experience, numericality: {greater_than_or_equal_to: 0}
+    validate :max_health
+    validate :max_mana
     validate :attribute_points
 
     def attribute_points
         if level * 3 + 15 != points + strength + agility + intellect + vitality + spirit
             errors.add(:character, "Attribute points don't match character's level")
+        end
+    end
+
+    def max_health
+        if health > 90 + vitality * 10
+            errors.add(:character, "health greater than max health")
+        end
+    end
+
+    def max_mana
+        if mana > 90 + spirit * 10
+            errors.add(:character, "mana greater than max mana")
         end
     end
 

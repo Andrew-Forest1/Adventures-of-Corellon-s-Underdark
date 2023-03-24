@@ -171,6 +171,7 @@ function Character({}){
                     <button name="spirit" onClick={handleSubtract}>-</button>
                 </div>
                 <button onClick={handleSave}>Save</button>
+                <p>Gold: {character.gold}</p>
             </div>
             <CharacterAbilities abilities={character.abilities} character={character} setCharacter={setCharacter}/>
             <Abilities/>

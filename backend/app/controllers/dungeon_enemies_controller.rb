@@ -1,7 +1,7 @@
 class DungeonEnemiesController < ApplicationController
     before_action :find_dungeon_enemy, only: [:show, :destroy, :update]
 
-    skip_before_action :authorized_user
+    #skip_before_action :authorized_user
 
     def index
         render json: DungeonEnemy.all, status: :ok

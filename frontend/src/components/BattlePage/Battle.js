@@ -28,7 +28,7 @@ function Battle({}) {
     const navigate = useNavigate()
     const [actions, setActions] = useState([]);
     const status = {stunned: false, snared: false, blind: false, silenced: false, cursed: false}
-    const [player, setPlayer] = useState({...character, health: character.vitality * 10 + 90, mana: character.spirit * 10 + 90, status: new Status()});
+    const [player, setPlayer] = useState({...character, mana: character.spirit * 10 + 90, status: new Status()});
     const [enemyF, setEnemyF] = useState( enemy ? {...enemy, health: enemy.vitality * 10 + 90, mana: enemy.spirit * 10 + 90, status: new Status()} : null);
     const [battleOver, setBattleOver] = useState({battleOver:false, outCome: "Battle Ongoing"});
     const [battleController, setBattleController] = useState(new BattleController(player, enemyF, setActions, setBattleOver));
@@ -56,7 +56,7 @@ function Battle({}) {
     return (
         <div className="Battle">
             {/* battleOver.battleOver */}
-            { battleOver.battleOver ? <BattleOver battleOver={battleOver} dungeonEnemy={dungeonEnemy}/> :
+            { battleOver.battleOver ? <BattleOver battleOver={battleOver} character={player} enemy={enemyF} dungeonEnemy={dungeonEnemy}/> :
             <>
                 <Character character={player} abilityController={battleController}/>
                 <section/>

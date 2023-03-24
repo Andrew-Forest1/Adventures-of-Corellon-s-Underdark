@@ -1,6 +1,6 @@
 class ConsumablesController < ApplicationController
     before_action :find_consumable, only: [:show, :destroy, :update, :image_update]
-    skip_before_action :authorized_user
+    #skip_before_action :authorized_user
 
     def create
         consumable = Consumable.create!(consumable_params)
