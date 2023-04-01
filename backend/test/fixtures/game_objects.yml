@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  x_pos: 1.5
+  y_pos: 1.5
+  rotation: 1.5
+  w_scale: 1.5
+  h_scale: 1.5
+  shape: MyString
+  scene: one
+
+two:
+  x_pos: 1.5
+  y_pos: 1.5
+  rotation: 1.5
+  w_scale: 1.5
+  h_scale: 1.5
+  shape: MyString
+  scene: two

@@ -140,7 +140,7 @@ function Canvas({props, gameObjects, setGameObjects, selectedGO, setSelectedGame
                         const img = new Image(100, 100)
                         img.src = sprite.image_url
                         img.name = sprite.name
-                        img.crossOrigin="anonymous"
+                        // img.crossOrigin="anonymous"
                         setGameObjects(current => [...current, new GameObject({x: gameObject.x_pos, y: gameObject.y_pos}, gameObject.rotation, {w: gameObject.w_scale, h: gameObject.h_scale}, gameObject.shape, img, gameObject.id)])
                     })
                 })

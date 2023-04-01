@@ -1,11 +1,11 @@
 <mxfile host="65bd71144e">
     <diagram id="T8C3bZ8Fw9OgXHhQJTOG" name="Page-1">
-        <mxGraphModel dx="2020" dy="628" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1988" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
                 <mxCell id="2" value="Game Object Animation" style="swimlane;whiteSpace=wrap;html=1;startSize=20;" parent="1" vertex="1" collapsed="1">
-                    <mxGeometry x="-35" y="730" width="140" height="30" as="geometry">
+                    <mxGeometry x="-150" y="680" width="140" height="30" as="geometry">
                         <mxRectangle x="110" y="570" width="200" height="80" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -28,20 +28,14 @@
                 <mxCell id="122" value="&lt;ol&gt;&lt;li&gt;email&lt;/li&gt;&lt;li&gt;username&lt;/li&gt;&lt;li&gt;password&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="11" vertex="1">
                     <mxGeometry y="25" width="200" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="" style="endArrow=classic;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;startArrow=none;" parent="1" source="2" target="22" edge="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="75" y="960" as="sourcePoint"/>
-                        <mxPoint x="175" y="770" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
                 <mxCell id="25" value="" style="endArrow=classic;html=1;entryX=0.493;entryY=1.067;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="2" target="30" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="-66" y="930" as="sourcePoint"/>
-                        <mxPoint x="-65" y="840" as="targetPoint"/>
+                        <mxPoint x="-181" y="880" as="sourcePoint"/>
+                        <mxPoint x="-180" y="790" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="27" value="Animation" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1" collapsed="1">
-                    <mxGeometry x="-75" y="630" width="60" height="30" as="geometry">
+                    <mxGeometry x="-190" y="580" width="60" height="30" as="geometry">
                         <mxRectangle x="120" y="350" width="140" height="120" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -884,7 +878,7 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="265" value="Dungeon_Progress" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1" collapsed="1">
-                    <mxGeometry x="300" y="1060" width="140" height="30" as="geometry">
+                    <mxGeometry x="295" y="1060" width="140" height="30" as="geometry">
                         <mxRectangle x="285" y="1050" width="200" height="200" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -908,7 +902,7 @@
                         <mxPoint x="315" y="760" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="272" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="5" target="262" edge="1">
+                <mxCell id="272" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" parent="1" source="5" target="11" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="420" y="800" as="sourcePoint"/>
                         <mxPoint x="470" y="750" as="targetPoint"/>
@@ -942,44 +936,47 @@
                         <mxPoint x="110" y="1040" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="278" value="Status Controller" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="278" value="Status Controller" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry y="3690" width="680" height="400" as="geometry"/>
                 </mxCell>
-                <mxCell id="284" value="is character stunned?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="278">
+                <mxCell id="284" value="is character stunned?" style="rhombus;whiteSpace=wrap;html=1;" parent="278" vertex="1">
                     <mxGeometry x="300" y="60" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="285" value="is character snared?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="278">
+                <mxCell id="285" value="is character snared?" style="rhombus;whiteSpace=wrap;html=1;" parent="278" vertex="1">
                     <mxGeometry x="250" y="270" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="286" value="is character blind?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="278">
+                <mxCell id="286" value="is character blind?" style="rhombus;whiteSpace=wrap;html=1;" parent="278" vertex="1">
                     <mxGeometry x="250" y="170" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="287" value="is character silenced?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="278">
+                <mxCell id="287" value="is character silenced?" style="rhombus;whiteSpace=wrap;html=1;" parent="278" vertex="1">
                     <mxGeometry x="360" y="170" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="288" value="is character cursed?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="278">
+                <mxCell id="288" value="is character cursed?" style="rhombus;whiteSpace=wrap;html=1;" parent="278" vertex="1">
                     <mxGeometry x="460" y="170" width="80" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="289" value="Apply Effect" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="278">
+                <mxCell id="289" value="Apply Effect" style="rounded=1;whiteSpace=wrap;html=1;" parent="278" vertex="1">
                     <mxGeometry x="60" y="80" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="282" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="281" target="278">
+                <mxCell id="282" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="281" target="278" edge="1">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
-                <mxCell id="281" value="Character" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="281" value="Character" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="280" y="3600" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="283" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="283" value="" style="ellipse;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="285" y="4130" width="120" height="80" as="geometry"/>
                 </mxCell>
-                <mxCell id="290" value="Effect, duration" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+                <mxCell id="290" value="Effect, duration" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
                     <mxGeometry x="60" y="3600" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="291" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="290" target="289">
+                <mxCell id="291" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="290" target="289" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="20" y="3780" as="sourcePoint"/>
                         <mxPoint x="70" y="3730" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="292" value="Removed" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="-200" y="545" width="200" height="200" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

@@ -3,7 +3,7 @@ class CharacterConsumablesController < ApplicationController
     #skip_before_action :authorized_user
 
     def create
-        character_consumable = CharacterConsumable.create!(character_consumable_params)
+        character_consumable = CharacterConsumable.create!(character_id: character_consumable_params[:character_id], consumable_id: character_consumable_params[:consumable_id], amount: 1)
         render json: Character.find(params[:character_id]), status: :created
     end
 
@@ -29,6 +29,10 @@ class CharacterConsumablesController < ApplicationController
 
     def character_consumable_params
         params.permit(:consumable_id, :character_id)
+    end
+
+    def consumable_amount_params
+        params.permit(:consumable_id, :character_id, :amount)
     end
 
     def find_character_consumable

@@ -2,8 +2,10 @@ class AbilityController{
     constructor(player){
         this.playerAbilities = player.abilities.map(ability => {
             const a = {
+                id: ability.id,
                 name: ability.name,
                 type: ability.ability_type,
+                origin: "character",
                 damage: ability.damage,
                 cooldownDuration: ability.cooldown,
                 cooldownCounter: 0,
@@ -17,6 +19,19 @@ class AbilityController{
             }
             return a
         })
+        player.consumables ? this.playerConsumables = player.consumables.map(consumable => {
+            const c = {
+                id: consumable.id,
+                name: consumable.name,
+                type: consumable.abilities[0].ability_type,
+                origin: "consumable",
+                damage: consumable.abilities[0].damage,
+                uses: 100,
+                cast: 0,
+                manaCost: 0
+            } 
+            return c
+        }) : this.playerConsumables = []
         this.casting = null
         this.player = player
         this.error = "none"
@@ -28,6 +43,12 @@ class AbilityController{
             this.player.status.update()
             this.casting = null
             return ability.ability_type === "skip" ? ability : this.error
+        }else if(ability.origin === "consumable"){
+            //const consumable = this.playerConsumables.find(c => c.id === ability.consumable.id)
+            this.casting = null
+            this.cooldownCountDown()
+            this.player.status.update()
+            return ability
         }else{
             const abilityInvoked = this.playerAbilities.find(ab => ab.name === ability.name)
             if(this.canInvoke(abilityInvoked)){

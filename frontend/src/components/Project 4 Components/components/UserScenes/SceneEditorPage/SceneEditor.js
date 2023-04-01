@@ -2,11 +2,17 @@ import Inspector from './Inspector';
 import NewGameObjectForm from './NewGameObjectForm';
 import PlayButton from '../../PlayButton';
 import Canvas from './Canvas'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import GameObject from '../../../Scripts/GameObject';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../../../context/userContext';
+import { DragContext } from '../../../../context/dragContext';
+import Sprites from './Sprites'
+import UploadSprite from '../../UploadSprite'
 
-function SceneEditor({scene, user, drag}){
+function SceneEditor({scene}){
+    const {user} = useContext(UserContext);
+    const {drag, setDrag} = useContext(DragContext)
     const [gameObjects, setGameObjects] = useState(null);
     const [playableObjects, setPlayableObjects] = useState([]);
     const [selectedGO, setSelectedGO] = useState(null);
@@ -47,12 +53,11 @@ function SceneEditor({scene, user, drag}){
 
     const getGameObjects = (gameObjects) => {
         const newGameObjects = gameObjects.map(gameObject => {
-            let img = ""
+            let img = new Image()
             if(gameObject.sprite !== null){
-                img = new Image()
                 img.src = gameObject.sprite.image_url
                 img.name = gameObject.sprite.name
-                img.crossOrigin="anonymous"
+                //img.crossOrigin="anonymous"
             }
             const go = new GameObject({x: gameObject.x_pos, y: gameObject.y_pos}, gameObject.rotation, {w: gameObject.w_scale, h: gameObject.h_scale}, gameObject.shape, img, gameObject.id)
             go.animations = gameObject.animations
@@ -77,6 +82,7 @@ function SceneEditor({scene, user, drag}){
     if(!gameObjects) return (<label>Loading</label>)
 
     return (
+        <>
         <div className='editor'>
             <div>
                 <NewGameObjectForm setGameObjects={setGameObjects} scene={scene}/>
@@ -87,6 +93,11 @@ function SceneEditor({scene, user, drag}){
             <button onClick={handleSave}>Save</button>
             {selectedGO ? <Inspector gameObject={selectedGO} setSelectedGO={setSelectedGO} setGameObjects={setGameObjects} animations={animations} sprites={sprites}/> : null}
         </div>
+            <>
+                <UploadSprite user={user} setSprites={setSprites}/>
+                <Sprites setDrag={setDrag} sprites={sprites}/>
+            </>
+        </>
     )
 }
 

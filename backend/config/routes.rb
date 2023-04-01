@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :game_object_sprites
+  resources :scenes
+  resources :game_objects
+  resources :sprites
   resources :progresses
   resources :dungeon_enemies
   resources :dungeons

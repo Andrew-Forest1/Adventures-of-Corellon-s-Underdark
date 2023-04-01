@@ -32,7 +32,7 @@ function BattleOver({battleOver, character, enemy, dungeonEnemy}){
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({health: character.health, gold: character.gold + 5, experience: character.experience + enemy.experience})
+                body: JSON.stringify({health: character.health, mana: character.mana, gold: character.gold + 5, experience: character.experience + enemy.experience})
             })
             .then(res => {if(res.ok){
                 res.json()

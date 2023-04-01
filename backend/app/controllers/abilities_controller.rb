@@ -28,7 +28,7 @@ class AbilitiesController < ApplicationController
     private
 
     def ability_params
-        params.permit(:name, :ability_type, :damage, :cooldown, :uses, :effect, :cast)
+        params.permit(:name, :ability_type, :damage, :cooldown, :uses, :effect, :cast, :mana, :duration)
     end
 
     def find_ability

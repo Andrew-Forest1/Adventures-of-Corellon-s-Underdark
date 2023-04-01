@@ -20,6 +20,8 @@ import CreateDungeon from './components/Dungeon/CreateDungeon';
 import CreateAbility from './components/CreateAbility';
 import Shop from './components/Shop/Shop'
 import Inventory from './components/Inventory/Inventory';
+import SceneEditor from './components/Project 4 Components/components/UserScenes/SceneEditorPage/SceneEditor'
+import UserScenes from './components/Project 4 Components/components/UserScenes/SceneBrowser/UserScenes'
 
 function App() {
   const {user, setUser} = useContext(UserContext);
@@ -77,6 +79,8 @@ function App() {
                 <Route path='/dnd' element={<DnD/>}/>
                 <Route path='/shop' element={<Shop/>}/>
                 <Route path='/inventory' element={<Inventory/>}/>
+                <Route path='/scenes' element={<UserScenes/>}/>
+                <Route path='/scenes/*' element={<SceneEditor/>}/>
               </>
             }
           </Routes>

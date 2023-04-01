@@ -97,7 +97,7 @@ function Inspector({gameObject, setSelectedGO, setGameObjects, animations, sprit
                 <input onBlur={handleLeave} onChange={handleChange} value={editing.yscale === undefined ? gameObject.scale.h : editing.yscale} type="number" name="yscale"/>
             </div>
             <br/>
-            {gameObject ? <AddAnimation gameObject={gameObject} setSelectedGO={setSelectedGO} animations={animations}/> : null}
+            {/* {gameObject ? <AddAnimation gameObject={gameObject} setSelectedGO={setSelectedGO} animations={animations}/> : null} */}
             {gameObject ? <AddSprite gameObject={gameObject} setSelectedGO={setSelectedGO} sprites={sprites}/> : null}
             <button onClick={handleClick}>Delete Game Object</button>
         </div>

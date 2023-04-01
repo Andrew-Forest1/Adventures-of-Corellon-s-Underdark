@@ -28,6 +28,17 @@ function UploadSprite({setSprites, user}){
           method: 'POST',
           body: formData
         })
+        .then((res) => {
+            if(res.ok){
+              res.json()
+              .then((sprite) => {
+                setSprites(current => [...current, sprite])
+              })
+            } else {
+              res.json()
+              .then(msg => alert(msg.error))
+          }
+          })
         .catch(error=>console.log(error));
     }
 

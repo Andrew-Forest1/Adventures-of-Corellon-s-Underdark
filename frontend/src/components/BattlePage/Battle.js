@@ -28,8 +28,8 @@ function Battle({}) {
     const navigate = useNavigate()
     const [actions, setActions] = useState([]);
     const status = {stunned: false, snared: false, blind: false, silenced: false, cursed: false}
-    const [player, setPlayer] = useState({...character, mana: character.spirit * 10 + 90, status: new Status()});
-    const [enemyF, setEnemyF] = useState( enemy ? {...enemy, health: enemy.vitality * 10 + 90, mana: enemy.spirit * 10 + 90, status: new Status()} : null);
+    const [player, setPlayer] = useState({...character, status: new Status()});
+    const [enemyF, setEnemyF] = useState( enemy ? {...enemy, health: enemy.vitality * 10 + 90, mana: enemy.spirit * 10 + 90, status: new Status(), consumables: null} : null);
     const [battleOver, setBattleOver] = useState({battleOver:false, outCome: "Battle Ongoing"});
     const [battleController, setBattleController] = useState(new BattleController(player, enemyF, setActions, setBattleOver));
     

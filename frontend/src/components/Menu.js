@@ -12,6 +12,7 @@ function Menu({setMenu}){
             <button onClick={() => {navigate('/shop')}}>Shop</button>
             <button onClick={() => {navigate('/inventory')}}>Inventory</button>
             <button onClick={() => {navigate('/dnd')}}>Dungeons and Dragons API</button>
+            <button onClick={() => {navigate('/scenes')}}>Scenes</button>
         </nav>
     )
 }

@@ -7,13 +7,14 @@ class ActionController{
     }
 
     action(ability){
-        if(ability.type !== "skip"){
-            this.reduceAbilityUses(ability)
-            this.doAbilityAction(ability)
-            this.consumeMana(ability)
-        }else{
-            this.doAbilityAction(ability)
+        if(ability.origin === "consumable"){
+            this.player.consumables[0].amount -= 1
         }
+        else if(ability.type !== "skip"){
+            this.reduceAbilityUses(ability)
+            this.consumeMana(ability)
+        }
+        this.doAbilityAction(ability)
         this.turn === "player" ? this.turn = "enemy" : this.turn = "player"
         return this.log
     }
@@ -22,11 +23,14 @@ class ActionController{
         ability.uses -= 1
     }
 
+    reduceItemAmount(consumable){
+
+    }
+
     doAbilityAction(ability){
         if(ability.type === "support"){
             const target = this.turn === "player" ? this.player : this.enemy
-            target.health - ability.damage > target.vitality * 10 + 90 ? target.health  = target.vitality * 10 + 90 : target.health -= ability.damage 
-            this.log = {combatent: this.turn ,action : `${target.name} used ${ability.name} to heal themselves by ${-1 * ability.damage}`}
+            this.applySupportEffect(ability, target)
         }else if(ability.type === "skip"){
             const target = this.turn === "player" ? this.player : this.enemy
             this.log = {combatent: this.turn ,action : `${target.name} ${ability.description}`}
@@ -39,12 +43,24 @@ class ActionController{
     }
 
     consumeMana(ability){
-        const target = this.turn === "player" ? this.player : this.enemy 
-        target.mana -= ability.manaCost
+        if(ability.manaCost){
+            const target = this.turn === "player" ? this.player : this.enemy 
+            target.mana -= ability.manaCost
+        }
     }
 
     applyEffect(ability, target){
         target.status.applyEffect(ability.effect, ability.duration)
+    }
+
+    applySupportEffect(ability, target){
+        if(ability.effect === "heal"){
+            target.health - ability.damage > target.vitality * 10 + 90 ? target.health  = target.vitality * 10 + 90 : target.health -= ability.damage 
+            this.log = {combatent: this.turn ,action : `${target.name} used ${ability.name} to heal themselves by ${-1 * ability.damage}`}
+        }else if(ability.effect === "mana"){
+            target.mana + ability.damage > target.spirit * 10 + 90 ? target.mana  = target.spirit * 10 + 90 : target.mana += ability.damage 
+            this.log = {combatent: this.turn ,action : `${target.name} used ${ability.name} to restor mana by ${ability.damage}`}
+        }
     }
 
     applyDamage(ability, target, attacker){

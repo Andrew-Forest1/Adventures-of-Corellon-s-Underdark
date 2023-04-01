@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_24_170104) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_30_185830) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_170104) do
     t.bigint "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "amount"
     t.index ["character_id"], name: "index_character_consumables_on_character_id"
     t.index ["consumable_id"], name: "index_character_consumables_on_consumable_id"
   end
@@ -151,6 +152,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_170104) do
     t.index ["enemy_id"], name: "index_enemy_abilities_on_enemy_id"
   end
 
+  create_table "game_object_sprites", force: :cascade do |t|
+    t.bigint "sprite_id", null: false
+    t.bigint "game_object_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_object_id"], name: "index_game_object_sprites_on_game_object_id"
+    t.index ["sprite_id"], name: "index_game_object_sprites_on_sprite_id"
+  end
+
+  create_table "game_objects", force: :cascade do |t|
+    t.float "x_pos"
+    t.float "y_pos"
+    t.float "rotation"
+    t.float "w_scale"
+    t.float "h_scale"
+    t.string "shape"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "scene_id", null: false
+    t.index ["scene_id"], name: "index_game_objects_on_scene_id"
+  end
+
   create_table "progresses", force: :cascade do |t|
     t.bigint "character_id", null: false
     t.bigint "dungeon_id", null: false
@@ -160,6 +183,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_170104) do
     t.index ["character_id"], name: "index_progresses_on_character_id"
     t.index ["dungeon_enemy_id"], name: "index_progresses_on_dungeon_enemy_id"
     t.index ["dungeon_id"], name: "index_progresses_on_dungeon_id"
+  end
+
+  create_table "scenes", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.text "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_scenes_on_user_id"
+  end
+
+  create_table "sprites", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.boolean "private"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sprites_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -183,7 +224,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_24_170104) do
   add_foreign_key "dungeon_enemies", "enemies", on_delete: :cascade
   add_foreign_key "enemy_abilities", "abilities", on_delete: :cascade
   add_foreign_key "enemy_abilities", "enemies", on_delete: :cascade
+  add_foreign_key "game_object_sprites", "game_objects", on_delete: :cascade
+  add_foreign_key "game_object_sprites", "sprites", on_delete: :cascade
+  add_foreign_key "game_objects", "scenes", on_delete: :cascade
   add_foreign_key "progresses", "characters", on_delete: :cascade
   add_foreign_key "progresses", "dungeon_enemies", on_delete: :cascade
   add_foreign_key "progresses", "dungeons", on_delete: :cascade
+  add_foreign_key "scenes", "users", on_delete: :cascade
+  add_foreign_key "sprites", "users", on_delete: :cascade
 end

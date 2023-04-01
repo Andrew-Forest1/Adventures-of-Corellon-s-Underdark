@@ -7,7 +7,6 @@ function Sprites({setDrag, user}){
         fetch(`/sprites`)
         .then(resp => resp.json())
         .then(data => { 
-            
             const userSprites = data.filter(sprite => sprite.user.id === user.id)
             setSprites(userSprites)
         })

@@ -1,11 +1,30 @@
 import UserScene from './UserScene'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { UserContext } from '../../../../context/userContext';
 
-function UserScenes({scenes, setScenes, setRenderScene, user}){
+function UserScenes({}){
+    const {user} = useContext(UserContext);
+    const [scenes, setScenes] = useState([]);
+    const [renderScene, setRenderScene] = useState(null);
+
     const [newScene, setNewScene] = useState({
         user_id: user.id,
         name: ''
     });
+
+    useEffect(() => {
+        getScenes()
+    }, []);
+
+    const getScenes = () => {
+        fetch("/scenes")
+        .then(resp => resp.json())
+        .then(data => {
+          setScenes(data)
+        })
+    }
+    
+    const userScenes = user ? scenes.filter(scene => scene.user.id === user.id) : null
 
     const onClick = (e) => {
         fetch('/scenes', {
