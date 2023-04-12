@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="T8C3bZ8Fw9OgXHhQJTOG" name="Page-1">
-        <mxGraphModel dx="1988" dy="600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2032" dy="627" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -86,8 +86,8 @@
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="22" value="Game Objects" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1" collapsed="1">
-                    <mxGeometry x="165" y="630" width="160" height="30" as="geometry">
-                        <mxRectangle x="300" y="380" width="250" height="210" as="alternateBounds"/>
+                    <mxGeometry x="140" y="640" width="160" height="30" as="geometry">
+                        <mxRectangle x="140" y="640" width="250" height="210" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="32" value="Global Position" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="22" vertex="1">
@@ -916,7 +916,7 @@
                 </mxCell>
                 <mxCell id="274" value="NPC" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1" collapsed="1">
                     <mxGeometry x="85" y="910" width="70" height="30" as="geometry">
-                        <mxRectangle x="80" y="780" width="200" height="200" as="alternateBounds"/>
+                        <mxRectangle x="85" y="910" width="200" height="200" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="275" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="274" target="262" edge="1">
@@ -975,8 +975,20 @@
                         <mxPoint x="70" y="3730" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="292" value="Removed" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="292" value="Removed" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="-200" y="545" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="294" style="edgeStyle=none;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="293" target="22">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="293" value="Interaction" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="10" y="720" width="200" height="165" as="geometry"/>
+                </mxCell>
+                <mxCell id="295" value="event: string" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="293">
+                    <mxGeometry x="-5" y="25" width="90" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="298" value="contents: text" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="293">
+                    <mxGeometry y="50" width="90" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

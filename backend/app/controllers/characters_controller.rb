@@ -31,8 +31,8 @@ class CharactersController < ApplicationController
         @character.image.attach(io: file, filename: filename)
         render json: @character, status: :accepted
         rescue URI::InvalidURIError
-        @character.update!(image: params[:image])
-        render json: @character, status: :accepted
+            @character.update!(image: params[:image])
+            render json: @character, status: :accepted
     end
 
     private

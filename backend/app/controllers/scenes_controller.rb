@@ -1,7 +1,8 @@
 class ScenesController < ApplicationController
-    before_action :find_scene, only:[:show, :destroy, :update]
+    require 'uri'
+    before_action :find_scene, only:[:show, :destroy, :update, :background_update]
     skip_before_action :authorized_user
-    
+
     def index
         render json: Scene.all, status: :ok
     end
@@ -13,6 +14,16 @@ class ScenesController < ApplicationController
     def update
         @scene.update!(scene_params)
         render json: @scene, status: :ok
+    end
+
+    def background_update
+        # file = URI.open(params[:image])
+        # filename = File.basename(URI.parse(params[:image]).path)
+        # @scene.image.attach(io: file, filename: filename)
+        # render json: @scene, status: :accepted
+        # rescue URI::InvalidURIError
+            @scene.update!(bimage: params[:image])
+            render json: @scene, status: :accepted
     end
 
     def create
@@ -32,8 +43,12 @@ class ScenesController < ApplicationController
     end
 
     def scene_params
-        params.permit(:name, :user_id, :image, :background)
+        params.permit(:name, :user_id, :image)
     end
+
+    # def image_params
+    #     params.permit(:image)
+    # end
 
     # def single_scene
     #     {id: @scene.id, name: @scene.name, user: @scene.user, game_objects: @scene.game_objects}

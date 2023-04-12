@@ -3,6 +3,7 @@ class GameObject < ApplicationRecord
   
   has_one :game_object_sprite
   has_one :sprite, through: :game_object_sprite
+  has_one :interaction
 
   # has_many :game_object_animations
   # has_many :animations, through: :game_object_animations

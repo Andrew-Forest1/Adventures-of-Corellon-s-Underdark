@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :interactions
   resources :game_object_sprites
   resources :scenes
   resources :game_objects
@@ -26,4 +27,5 @@ Rails.application.routes.draw do
   get "/selected_character", to: "sessions#show_character"
   post "/dnd", to: "dnd#dnd"
   put "/dnd", to: "dnd#show"
+  put '/scenebackground/:id', to: 'scenes#background_update'
 end

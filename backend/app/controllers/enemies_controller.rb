@@ -29,6 +29,7 @@ class EnemiesController < ApplicationController
     end
 
     def image_update
+        binding.break
         file = URI.open(params[:image])
         filename = File.basename(URI.parse(params[:image]).path)
         @enemy.image.attach(io: file, filename: filename, content_type: 'image/jpg/png')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_30_185830) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_191953) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -174,6 +174,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_185830) do
     t.index ["scene_id"], name: "index_game_objects_on_scene_id"
   end
 
+  create_table "interactions", force: :cascade do |t|
+    t.bigint "game_object_id", null: false
+    t.string "event"
+    t.text "contents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_object_id"], name: "index_interactions_on_game_object_id"
+  end
+
   create_table "progresses", force: :cascade do |t|
     t.bigint "character_id", null: false
     t.bigint "dungeon_id", null: false
@@ -227,6 +236,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_30_185830) do
   add_foreign_key "game_object_sprites", "game_objects", on_delete: :cascade
   add_foreign_key "game_object_sprites", "sprites", on_delete: :cascade
   add_foreign_key "game_objects", "scenes", on_delete: :cascade
+  add_foreign_key "interactions", "game_objects", on_delete: :cascade
   add_foreign_key "progresses", "characters", on_delete: :cascade
   add_foreign_key "progresses", "dungeon_enemies", on_delete: :cascade
   add_foreign_key "progresses", "dungeons", on_delete: :cascade

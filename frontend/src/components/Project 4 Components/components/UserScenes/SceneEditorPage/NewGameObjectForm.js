@@ -1,7 +1,7 @@
 import { useState } from "react"
 import GameObject from "../../../Scripts/GameObject";
 
-function NewGameObjectForm({scene, setGameObjects}){
+function NewGameObjectForm({setGameObjects}){
     const [newGameObject, setNewGameObject] = useState({
         xposition: 400,
         yposition: 300,

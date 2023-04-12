@@ -1,11 +1,15 @@
 import GameObject from "../../../Scripts/GameObject"
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { SceneContext } from '../../../../context/sceneContext';
 
 function UserScene({scene, setScenes, setRenderScene}){
     const navigate = useNavigate()
+    const {setScene} = useContext(SceneContext);
 
     const onClickEdit = (e) => {
         setRenderScene(scene)
+        setScene(scene)
         navigate(`${scene.id}`)
     }
 

@@ -1,10 +1,13 @@
 import { useState } from "react"
 import AddAnimation from "./AddAnimation";
 import AddSprite from "./AddSprite";
+import AddEffect from "./AddEffect";
+import TextEditor from "./TextEditor";
 
 function Inspector({gameObject, setSelectedGO, setGameObjects, animations, sprites}){
     const [updatedGO, setUpdatedGO] = useState(gameObject);
     const [editing, setEditing] = useState("");
+    const [textEditor, setTextEditor] = useState(false);
 
     const handleChange = (e) => {
         if(editing === ""){
@@ -78,6 +81,8 @@ function Inspector({gameObject, setSelectedGO, setGameObjects, animations, sprit
 
     if(!gameObject) return <div/>
 
+    // console.log(gameObject)
+
     return(
         <div className="inspector">
             <div>
@@ -98,6 +103,8 @@ function Inspector({gameObject, setSelectedGO, setGameObjects, animations, sprit
             </div>
             <br/>
             {/* {gameObject ? <AddAnimation gameObject={gameObject} setSelectedGO={setSelectedGO} animations={animations}/> : null} */}
+            {gameObject.interaction ? null : <AddEffect gameObject={gameObject} setTextEditor={setTextEditor} setGameObjects={setGameObjects}/>}
+            {textEditor ? <TextEditor gameObject={gameObject}/> : null}
             {gameObject ? <AddSprite gameObject={gameObject} setSelectedGO={setSelectedGO} sprites={sprites}/> : null}
             <button onClick={handleClick}>Delete Game Object</button>
         </div>
